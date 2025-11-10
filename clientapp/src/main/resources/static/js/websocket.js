@@ -34,31 +34,7 @@ class WebSocketClient {
             this.status = 'CONNECTING';
             console.log('🔄 Connecting to WebSocket...');
 
-            // Determine WS endpoint using deployment-time API base if provided.
-            // If API base ends with '/api', strip it and append '/ws'. Otherwise append '/ws' to origin.
-            let apiBase = null;
-            try {
-                apiBase = (typeof window !== 'undefined' && window.API_BASE) ? window.API_BASE : null;
-                const meta = (typeof document !== 'undefined') ? document.querySelector('meta[name="api-base"]') : null;
-                if (!apiBase && meta) apiBase = meta.content;
-            } catch (e) {
-                apiBase = null;
-            }
-
-            let sockUrl = '/ws';
-            if (apiBase) {
-                try {
-                    // Remove trailing /api if present (common pattern)
-                    const cleaned = apiBase.replace(/\/api\/?$/, '');
-                    const u = new URL(cleaned, window.location.href);
-                    sockUrl = u.origin + '/ws';
-                } catch (e) {
-                    // fallback to relative path
-                    sockUrl = '/ws';
-                }
-            }
-
-            const socket = new SockJS(sockUrl);
+            const socket = new SockJS('/ws');
             this.stompClient = Stomp.over(socket);
             
             // Disable debug logs

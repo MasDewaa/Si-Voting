@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Deployment-time API base: set this meta tag in your static HTML or via Thymeleaf variable
-        Example: <meta name="api-base" content="https://api.example.com/api"> -->
-    <meta name="api-base" th:if="${apiBase}" th:content="${apiBase}" />
-    <!-- Fallback: read API_BASE from environment if not provided via model (useful when running in container) -->
-    <meta name="api-base" th:if="${apiBase} == null" th:content="${@environment.getProperty('API_BASE')}" />
     <title th:text="${pageTitle}">Dashboard SI-VOTING</title>
     <link rel="icon" type="image/png" href="/assets/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,11 +74,5 @@
         });
     }
 </script>
-<!-- Load WebSocket libs and application JS (app expects these under /js) -->
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-<script th:src="@{/js/api.js}"></script>
-<script th:src="@{/js/utils.js}"></script>
-<script th:src="@{/js/websocket.js}"></script>
 </body>
 </html>

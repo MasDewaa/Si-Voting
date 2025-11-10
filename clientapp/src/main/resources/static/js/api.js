@@ -4,12 +4,8 @@
  */
 
 class APIClient {
-    constructor(baseURL) {
-        // Determine baseURL from (in order): explicit ctor arg, window.API_BASE global,
-        // <meta name="api-base" content="..."> tag, or fallback to localhost for dev.
-        const meta = typeof document !== 'undefined' ? document.querySelector('meta[name="api-base"]') : null;
-        const globalBase = typeof window !== 'undefined' ? window.API_BASE : null;
-        this.baseURL = baseURL || globalBase || (meta ? meta.content : null) || 'http://localhost:8080/api';
+    constructor(baseURL = 'http://localhost:8080/api') {
+        this.baseURL = baseURL;
         this.token = this.getToken();
     }
 
