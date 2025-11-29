@@ -1,25 +1,8 @@
 services:
-  db:
-    image: mysql
-    container_name: sivoting-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: sivotingdb
-      MYSQL_USER: sivoting
-      MYSQL_PASSWORD: 5X(Eef3CoH3_(q9A4x
-      MYSQL_ROOT_PASSWORD: root_password
-    command: ["--default-authentication-plugin=mysql_native_password"]
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - sivoting-net
-
   server:
     build: ./serverapp
     container_name: sivoting-server
     restart: unless-stopped
-    depends_on:
-      - db
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/sivotingdb?createDatabaseIfNotExist=true
@@ -51,6 +34,3 @@ services:
 networks:
   sivoting-net:
     driver: bridge
-
-volumes:
-  db-data:
