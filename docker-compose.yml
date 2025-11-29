@@ -8,7 +8,7 @@ services:
     environment:
       MYSQL_DATABASE: sivotingdb
       MYSQL_USER: sivoting
-      MYSQL_PASSWORD: sivoting_password
+      MYSQL_PASSWORD: 5X(Eef3CoH3_(q9A4x
       MYSQL_ROOT_PASSWORD: root_password
     command: ["--default-authentication-plugin=mysql_native_password"]
     volumes:
@@ -26,7 +26,7 @@ services:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/sivotingdb?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: sivoting
-      SPRING_DATASOURCE_PASSWORD: your_password_here
+      SPRING_DATASOURCE_PASSWORD: 5X(Eef3CoH3_(q9A4x
       SERVER_PORT: 8080
       SERVER_BASE_URL: http://server:8080
       CORS_ALLOWED_ORIGINS: http://client:8081
